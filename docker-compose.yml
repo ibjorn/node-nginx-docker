@@ -1,0 +1,59 @@
+version: "3.8"
+
+services:
+  nodejs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nodejs
+    container_name: nodejs
+    restart: unless-stopped
+    networks:
+      - app-network
+    volumes:
+      # - type: bind
+      #   source: ./static
+      #   target: /opt/app/static
+      - nodeproject:/home/node/app
+
+  webserver:
+    image: nginx:mainline-alpine
+    container_name: webserver
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - web-root:/var/www/html
+      - ./nginx-conf:/etc/nginx/conf.d
+      # - certbot-etc:/etc/letsencrypt
+      # - certbot-var:/var/lib/letsencrypt
+    depends_on:
+      - nodejs
+    networks:
+      - app-network
+
+  # certbot:
+  #   image: certbot/certbot
+  #   container_name: certbot
+  #   volumes:
+  #     - certbot-etc:/etc/letsencrypt
+  #     - certbot-var:/var/lib/letsencrypt
+  #     - web-root:/var/www/html
+  #   depends_on:
+  #     - webserver
+  #   command: certonly --webroot --webroot-path=/var/www/html --email sammy@your_domain --agree-tos --no-eff-email --staging -d your_domain  -d www.your_domain
+
+volumes:
+  nodeproject:
+  # certbot-etc:
+  # certbot-var:
+  web-root:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/username/app-directory/ # replace path with your own
+      o: bind
+
+networks:
+  app-network:
+    driver: bridge

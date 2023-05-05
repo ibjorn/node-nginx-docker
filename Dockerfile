@@ -2,6 +2,8 @@
 # pull the Node.js Docker image
 FROM node:alpine
 
+RUN apt-get -y update
+RUN apt-get -y install git
 
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 

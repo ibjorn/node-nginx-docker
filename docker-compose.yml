@@ -24,7 +24,7 @@ services:
       - "80:80"
     volumes:
       - web-root:/var/www/html
-      - ./nginx-conf:/etc/nginx/conf.d
+      - ./nginx:/etc/nginx/conf.d
       # - certbot-etc:/etc/letsencrypt
       # - certbot-var:/var/lib/letsencrypt
     depends_on:
@@ -51,7 +51,7 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/username/app-directory/ # replace path with your own
+      device: /home/username/your-app/ # replace path with your own
       o: bind
 
 networks:

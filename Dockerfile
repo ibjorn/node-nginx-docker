@@ -1,13 +1,8 @@
 FROM node:alpine
 
-<<<<<<< HEAD
-RUN apt-get -y update
-RUN apt-get -y install git
-=======
 USER root
 
 RUN apk add --no-cache git
->>>>>>> temp
 
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 

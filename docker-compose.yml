@@ -14,7 +14,12 @@ services:
       # - type: bind
       #   source: ./static
       #   target: /opt/app/static
-      - nodeproject:/home/node/app
+      # - nodeproject:/home/node/app
+      - ./app:/home/node/app:cached
+    environment:
+      - COMPOSE_PROJECT_NAME
+    
+    command: /bin/sh -c "while sleep 1000; do :; done"
 
   webserver:
     image: nginx:mainline-alpine
@@ -23,10 +28,16 @@ services:
     ports:
       - "80:80"
     volumes:
+<<<<<<< HEAD
       - web-root:/var/www/html
+=======
+      - project:/var/www/html
+>>>>>>> temp
       - ./nginx:/etc/nginx/conf.d
       # - certbot-etc:/etc/letsencrypt
       # - certbot-var:/var/lib/letsencrypt
+    environment:
+      - SERVER_NAME
     depends_on:
       - nodejs
     networks:
@@ -38,20 +49,20 @@ services:
   #   volumes:
   #     - certbot-etc:/etc/letsencrypt
   #     - certbot-var:/var/lib/letsencrypt
-  #     - web-root:/var/www/html
+  #     - project:/var/www/html
   #   depends_on:
   #     - webserver
   #   command: certonly --webroot --webroot-path=/var/www/html --email sammy@your_domain --agree-tos --no-eff-email --staging -d your_domain  -d www.your_domain
 
 volumes:
-  nodeproject:
+  # nodeproject:
   # certbot-etc:
   # certbot-var:
-  web-root:
+  project:
     driver: local
     driver_opts:
       type: none
-      device: /home/username/your-app/ # replace path with your own
+      device: ${LOCAL_PATH_TO_PROJECT} # replace path with your own
       o: bind
 
 networks:

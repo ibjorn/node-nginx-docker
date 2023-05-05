@@ -1,28 +1,26 @@
-
-# pull the Node.js Docker image
 FROM node:alpine
 
+<<<<<<< HEAD
 RUN apt-get -y update
 RUN apt-get -y install git
+=======
+USER root
+
+RUN apk add --no-cache git
+>>>>>>> temp
 
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
-# create the directory inside the container
 WORKDIR /home/node/app
 
-# copy the package.json files from local machine to the workdir in container
-COPY --chown=node:node package*.json ./
+COPY --chown=node:node /app/package*.json ./
 
 USER node
 
-# run npm install in our local machine
 RUN npm install
 
-# copy the generated modules and all other files to the container
-COPY --chown=node:node . .
+COPY --chown=node:node ./app .
 
-# our app is running on port 5000 within the container, so need to expose it
-EXPOSE 8080
+EXPOSE 80 8080 3000 5000
 
-# the command that starts our app
-CMD ["npm", "run", "dev"]
+# CMD ["npm", "run", "dev"]

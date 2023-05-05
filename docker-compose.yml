@@ -28,11 +28,7 @@ services:
     ports:
       - "80:80"
     volumes:
-<<<<<<< HEAD
-      - web-root:/var/www/html
-=======
       - project:/var/www/html
->>>>>>> temp
       - ./nginx:/etc/nginx/conf.d
       # - certbot-etc:/etc/letsencrypt
       # - certbot-var:/var/lib/letsencrypt

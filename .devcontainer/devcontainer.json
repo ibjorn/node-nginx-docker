@@ -1,5 +1,5 @@
 {
-	"name": "${PROJECT_NAME}",
+	"name": "NodeJS & Nginx",
 
 	// Update the 'dockerComposeFile' list if you have more compose files or use different names.
 	// The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
@@ -23,7 +23,8 @@
 				"dbaeumer.vscode-eslint",
 				"aaron-bond.better-comments",
 				"mikestead.dotenv",
-				"dsznajder.es7-react-js-snippets"
+				"dsznajder.es7-react-js-snippets",
+				"bradlc.vscode-tailwindcss"
 			]
 		}
 	}

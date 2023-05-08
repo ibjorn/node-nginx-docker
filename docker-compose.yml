@@ -15,7 +15,7 @@ services:
       #   source: ./static
       #   target: /opt/app/static
       # - nodeproject:/home/node/app
-      - ./app:/home/node/app:cached
+      - ./app:/home/node/app
     environment:
       - COMPOSE_PROJECT_NAME
     

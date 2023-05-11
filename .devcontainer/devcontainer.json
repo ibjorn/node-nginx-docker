@@ -24,8 +24,23 @@
 				"aaron-bond.better-comments",
 				"mikestead.dotenv",
 				"dsznajder.es7-react-js-snippets",
-				"bradlc.vscode-tailwindcss"
-			]
+				"bradlc.vscode-tailwindcss",
+				"mutantdino.resourcemonitor"
+			],
+			"settings": {
+				"files.associations": {
+					"*.css": "tailwindcss"
+				},
+				"editor.quickSuggestions": {
+					"strings": true
+				},
+				"tailwindCSS.includeLanguages": {
+					"plaintext": "html"
+				},
+				"editor.codeActionsOnSave": {
+					"source.fixAll.eslint": true
+				}
+			}
 		}
 	}
 

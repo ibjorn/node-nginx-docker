@@ -14,7 +14,7 @@ USER node
 
 RUN npm install
 
-COPY --chown=node:node ./app .
+COPY --chown=node:node /app .
 
 EXPOSE 80 8080 3000 5000
 
